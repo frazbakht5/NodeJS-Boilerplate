@@ -6,7 +6,6 @@ const AppleStrategy = require('passport-apple')
 const config = require('./config')
 const { tokenTypes } = require('./tokens')
 const { User } = require('../models')
-const GoogleController = require('../controllers/google.controller')
 var MicrosoftStrategy = require('passport-microsoft').Strategy
 const path = require('path')
 const jwt = require('jsonwebtoken')

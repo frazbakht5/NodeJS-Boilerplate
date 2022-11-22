@@ -4,10 +4,8 @@ const HttpResponse = require('../utils/modules/Response/HttpResponse');
 const BadRequest = require('../utils/modules/Errors/BadRequest');
 const NotFound = require('../utils/modules/Errors/NotFound');
 const InternalServerError = require('../utils/modules/Errors/InternalServer');
-const { verifyToken } = require('../services/token.service');
 const { getToken, debugLog1, debugLog2 } = require('../utils/commonFunctions');
 const FaqService = require('../services/faq.service');
-const GroupService = require('../services/group.service');
 
 class FaqController {
 

@@ -4,7 +4,7 @@ const { OAuth2Client } = require('google-auth-library')
 const { getToken } = require('../utils/commonFunctions')
 const { tokenTypes } = require('../config/tokens')
 const BadRequest = require('../utils/modules/Errors/BadRequest')
-const { verifyToken } = require('../services/token.service')
+const { verifyToken } = require('../services/token.service.js')
 const { TokenModel } = require('../models')
 // const ApiError = require('../utils/ApiError');
 

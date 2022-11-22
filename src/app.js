@@ -20,25 +20,8 @@ const refresh = require('passport-oauth2-refresh')
 const app = express()
 const http = require('http')
 const { userService } = require('./services')
-const { cron1, syncAllUserCalendars } = require('./utils/CroneJobs')
 const httpServer = http.createServer(app)
-const io = require('socket.io')(httpServer, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-  },
-})
 
-if (process.env.NODE_ENV == 'production')
-  cron1("s");
-// syncAllUserCalendars();
-
-// const io = require('socket.io')(server, {
-//   cors: {
-//     origin: 'http://localhost:3000',
-//     methods: ['GET', 'POST'],
-//   },
-// })
 
 app.get('/', (req, res) => {
   res.send("skeding")
@@ -88,21 +71,6 @@ passport.use('zoom', Zoom)
 passport.use('teams', Teams)
 passport.use('google_integration', GoogleIntegration)
 passport.use('outlook_integration', outlookIntegration)
-
-io.on('connection', (socket) => {
-  socket.on('sendingUserId', async (userId) => {
-    // console.log('socket', socket.id)
-    // console.log(userId)
-    await userService.updateUserById(userId, { socket_id: socket.id })
-
-    // let socketTopic = socket.id + '-newNotifications';
-    // socket.emit(socketTopic, `you socket id is ==>  ${socket.id}`)
-  })
-})
-
-module.exports.socketEmit = (topic, msg) => {
-  io.emit(topic, msg)
-}
 
 // console.log("Type of socketEmit ===> ", socketEmit);
 
